@@ -47,9 +47,9 @@ func loadPage(subdomain string) (*Page, error) {
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("home")
-	title := r.Trailer
+	title := r.Host
 	fmt.Println(r.RemoteAddr)
-	fmt.Fprintf(w, "<h1>%s</h1><div>%s</div>", title, r.RemoteAddr)
+	fmt.Fprintf(w, "<h1>%s</h1><div>%s</div>", title, r)
 
 }
 
