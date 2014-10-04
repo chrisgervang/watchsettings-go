@@ -47,7 +47,7 @@ func loadPage(subdomain string) (*Page, error) {
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("home")
-	title := r.URL.Path[:len("watchsettings.com:8080")]
+	title := r.URL.Path[:len("watchsettings.com")]
 	fmt.Fprintf(w, "<h1>%s</h1><div>%s</div>", r.URL.Path, title)
 
 }
