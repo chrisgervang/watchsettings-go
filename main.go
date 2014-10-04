@@ -49,7 +49,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("home")
 	title := r.Trailer
 	fmt.Println(r.RemoteAddr)
-	fmt.Fprintf(w, "<h1>%s</h1><div>%s</div>", r.Trailer, r.RemoteAddr)
+	fmt.Fprintf(w, "<h1>%s</h1><div>%s</div>", title, r.RemoteAddr)
 
 }
 
