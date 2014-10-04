@@ -16,7 +16,7 @@ func main() {
 	fmt.Println(string(p2.Html))
 
 	r := mux.NewRouter()
-	s := r.Host("{api}.watchsettings.com").Subrouter()
+	s := r.Host("{subdomain}.watchsettings.com").Subrouter()
 	s.HandleFunc("/", HomeHandler)
 	s.HandleFunc("/settings", SettingsHandler)
 	http.Handle("/", r)
@@ -47,7 +47,7 @@ func loadPage(subdomain string) (*Page, error) {
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("home")
-	fmt.Fprintf(w, "<h1>%s</h1><div>%s</div>", "po", "bo")
+	fmt.Fprintf(w, "<h1>%s</h1><div>%s</div>", "po", r)
 
 }
 
