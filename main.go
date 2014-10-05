@@ -17,11 +17,10 @@ func main() {
 	fmt.Println(string(p2.Html))
 
 	r := mux.NewRouter()
-	r.Handle("/", http.FileServer(http.Dir("www")))
 	s := r.Host("{subdomain}.watchsettings.com").Subrouter()
 	s.HandleFunc("/", HomeHandler)
 	s.HandleFunc("/settings", SettingsHandler)
-
+	r.Handle("/", http.FileServer(http.Dir("www")))
 	http.Handle("/", r)
 
 	http.ListenAndServe(":8080", nil)
