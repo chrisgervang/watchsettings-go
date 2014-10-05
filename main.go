@@ -47,9 +47,9 @@ func loadPage(subdomain string) (*Page, error) {
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("home")
-	title := r.Host[:len(".watchsettings.com")]
-	fmt.Println(r.RemoteAddr)
-	fmt.Fprintf(w, "<h1>%s</h1><div>%s</div>", title, r)
+	title := Split(r.Host, ".watchsettings.com")
+	fmt.Println("remote addr: " + r.RemoteAddr + " title: " + title)
+	//fmt.Fprintf(w, loadPage(title).Html)
 
 }
 
