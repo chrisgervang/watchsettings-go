@@ -47,7 +47,7 @@ func loadPage(subdomain string) (*Page, error) {
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("home")
-	title := Split(r.Host, ".watchsettings.com")
+	title := strings.Split(r.Host, ".watchsettings.com")
 	fmt.Println("remote addr: " + r.RemoteAddr + " title: " + title)
 	//fmt.Fprintf(w, loadPage(title).Html)
 
@@ -57,3 +57,5 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 func SettingsHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("setting")
 }
+
+//Watch for changes in "Apps"
