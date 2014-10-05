@@ -17,7 +17,7 @@ func main() {
 	fmt.Println(string(p2.Html))
 
 	r := mux.NewRouter()
-	s := r.Host("{subdomain}.104.131.77.107").Subrouter()
+	s := r.Host("{subdomain}.watchsettings.com").Subrouter()
 	s.HandleFunc("/", HomeHandler)
 	s.HandleFunc("/settings", SettingsHandler)
 	http.Handle("/", r)
