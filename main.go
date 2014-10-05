@@ -21,6 +21,7 @@ func main() {
 	s.HandleFunc("/", HomeHandler)
 	s.HandleFunc("/settings", SettingsHandler)
 	http.Handle("/", r)
+	http.Handle("/", http.FileServer(http.Dir("www")))
 	http.ListenAndServe(":8080", nil)
 
 }
