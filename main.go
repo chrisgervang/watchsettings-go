@@ -11,19 +11,24 @@ import (
 func main() {
 	fmt.Println("hello world")
 
-	p1 := &Page{Subdomain: "TestPage", Html: []byte("This is a sample Page.")}
-	p1.save()
-	p2, _ := loadPage("TestPage")
-	fmt.Println(string(p2.Html))
+	// p1 := &Page{Subdomain: "TestPage", Html: []byte("This is a sample Page.")}
+	// p1.save()
+	// p2, _ := loadPage("TestPage")
+	// fmt.Println(string(p2.Html))
+
+	fmt.Println("sup")
 
 	r := mux.NewRouter()
 	s := r.Host("{subdomain}.watchsettings.com").Subrouter()
 	s.HandleFunc("/", HomeHandler)
-	s.HandleFunc("/settings", SettingsHandler)
 	r.Handle("/", http.FileServer(http.Dir("www")))
+
+	//pass all route requests to mux
 	http.Handle("/", r)
 
+	//serve server
 	http.ListenAndServe(":8080", nil)
+
 
 }
 
@@ -51,15 +56,8 @@ func loadPage(subdomain string) (*Page, error) {
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("home")
 	title := strings.Split(r.Host, ".watchsettings.com")
-	fmt.Println("remote addr: " + r.RemoteAddr + " title: " + title[0])
+	//fmt.Println("remote addr: " + r.RemoteAddr + " title: " + title[0])
 	p, _ := loadPage(title[0])
 	fmt.Fprintf(w, "%s", p.Html)
 
 }
-
-//SettingsHandler
-func SettingsHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("setting")
-}
-
-//Watch for changes in "Apps"
