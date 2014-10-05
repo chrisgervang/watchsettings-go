@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"github.com/gorilla/mux"
+	"strings"
 )
 
 func main() {
