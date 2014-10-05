@@ -50,7 +50,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("home")
 	title := strings.Split(r.Host, ".watchsettings.com")
 	fmt.Println("remote addr: " + r.RemoteAddr + " title: " + title[0])
-	//fmt.Fprintf(w, loadPage(title).Html)
+	fmt.Fprintf(w, loadPage(title[0]).Html)
 
 }
 
