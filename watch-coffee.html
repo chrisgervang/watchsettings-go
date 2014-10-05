@@ -1,0 +1,6 @@
+function (context, options) {
+    if (!compiled) {
+      compiled = compileInput();
+    }
+    return compiled.call(this, context, options);
+  }

@@ -1,3 +1,6 @@
+//fireware redirection command: iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080
+
+
 var db = require("./db.js");
 var fs = require("fs");
 var Handlebars = require("handlebars");
@@ -28,30 +31,74 @@ var generate = {
   landingHtml: function(filename, configuration) {
     var content;
     // First I want to read the file
-    var template = "landing"
-    fs.readFile('./' + template + '.html', function read(err, data) {
+    var template = "landing-page";
+    fs.readFile('./templates/' + template + '.html', function read(err, data) {
         if (err) {
             throw err;
         }
         content = data;
 
         // Invoke the next step here however you like
-        console.log(content);   // Put all of the code here (not the best solution)
+        //console.log(content);   // Put all of the code here (not the best solution)
         processFile();          // Or put the next step in a function and invoke it
     });
 
     function processFile() {
-        console.log(content);
-        var template = Handlebars.compile(content.toString());
+        console.log("content: ", content);
+        var result = Handlebars.compile(content.toString());
 
-        var data = { "name": "Alan", "hometown": "Somewhere, TX",
-                     "kids": [{"name": "Jimmy", "age": "12"}, {"name": "Sally", "age": "4"}]};
-        var result = template(data);
-        console.log(result);
+        fs.writeFile("./" + filename + '.html', result, function (err) {
+          if (err) return console.log(err);
+          console.log('Write complete -> '+filename+'.html');
+        });
+
+
+        //console.log("result: ", result);
     }
 
   },
-  settigngsHtml: function(filename, configuration) {
+  settingsHtml: function(filename, configuration) {
 
   }
 }
+
+
+var settingsList = [{
+    "type": "title",
+    "data": {
+        "value": "Settings"
+    }
+},
+{
+    "type": "text",
+    "data": {
+        "value": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    }
+},
+{
+    "type": "toggle",
+    "data": {
+        "name": "Show Ads",
+        "id": "showAds"
+    }
+}];
+
+Handlebars.registerHelper('list', function(items, options) {
+    var out = '';
+    if(!items){
+        items = settingsList
+    }
+
+    for(var i=0, l=items.length; i<l; i++) {
+        out = out + options.fn(items[i]);
+    }
+
+    return out;
+});
+Handlebars.registerHelper('ifvalue', function (conditional, options) {
+    if (options.hash.value === conditional) {
+        return options.fn(this)
+    } else {
+        return options.inverse(this);
+    }
+});
