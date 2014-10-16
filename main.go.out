@@ -1,3 +1,6 @@
 Users/chrisgervang/gopath/src/watchsettings-go/main.go:7:2: cannot find package "github.com/gorilla/mux" in any of:
 	/usr/local/Cellar/go/1.3.1/libexec/src/pkg/github.com/gorilla/mux (from $GOROOT)
 	($GOPATH not set)
+Users/chrisgervang/gopath/src/watchsettings-go/main.go:9:2: cannot find package "watch-settings" in any of:
+	/usr/local/Cellar/go/1.3.1/libexec/src/pkg/watch-settings (from $GOROOT)
+	($GOPATH not set)

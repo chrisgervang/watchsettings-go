@@ -1,0 +1,26 @@
+{
+  "name": "watchsettings-go",
+  "version": "0.0.0",
+  "description": "Generative settings pages for Pebble Developers",
+  "main": "index.js",
+  "dependencies": {
+    "firebase": "~1.1.0",
+    "debug": "~2.0.0",
+    "lodash": "~2.4.1",
+    "handlebars": "^2.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisgervang/watchsettings-go.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrisgervang/watchsettings-go/issues"
+  },
+  "homepage": "https://github.com/chrisgervang/watchsettings-go"
+}

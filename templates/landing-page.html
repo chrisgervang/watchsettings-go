@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{name}}</title>
+
+    <link href="reset.css" rel="stylesheet" />
+    <link href="landing-page.css" rel="stylesheet" />
+</head>
+<body>
+        <div class="landing-body">
+
+            <ul class="body-lists">
+
+                {{#list omittedOnPurpose}}
+                    <li class="list {{type}}-list">
+
+                        {{#ifvalue type value="title"}}
+                            <div class="list-title">{{data.value}}</div>
+                        {{/ifvalue}}
+
+                        {{#ifvalue type value="text"}}
+                            <p class="list-text">{{data.value}}</p>
+                        {{/ifvalue}}
+
+                        {{#ifvalue type value="toggle"}}
+
+                            <div class="list-toggle">
+                                <div class="toggle-name">{{data.name}}</div>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="switch" class="switch">
+                                    <label for="switch" class="switch-bg" style="background: #{{landing.color}}">
+                                        <span class="switch-tab"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        {{/ifvalue}}
+
+                        {{#ifvalue type value="radio"}}
+                            <ul class="list-radio">
+
+                                {{#list data.options}}
+                                <li class="radio">
+
+                                    <div class="radio-name">{{name}}</div>
+                                    <input type="radio" name="color" value="{{id}}" checked="{{checked}}">
+                                    <div class="radio-box" style="background: #{{landing.color}}"></div>
+
+                                </li>
+                                {{/list}}
+
+                            </ul>
+                        {{/ifvalue}}
+
+                        {{#ifvalue type value="input"}}
+                            <div class="list-input">
+                                <input type="text" class="input" placeholder="{{data.placeholder}}">
+                            </div>
+                        {{/ifvalue}}
+
+                        <div class="handle">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </li>
+                {{/list}}
+
+            </ul>
+
+        </div>
+</body>
+</html>
